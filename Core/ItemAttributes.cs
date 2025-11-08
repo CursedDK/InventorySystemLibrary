@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InventorySystem.Core
 {
-    public class ItemAttributes(int attributeId, string attributeName, float attributeValue)
+    public class ItemAttributes(string attributeName, float attributeValue)
     {
-        public int AttributeId { get; set; } = attributeId;
+        public int AttributeId { get; set; }
         public string AttributeName { get; set; } = attributeName;
         public float AttributeValue { get; set; } = attributeValue;
     }

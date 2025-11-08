@@ -11,7 +11,25 @@ namespace InventorySystem.Core
         public ItemGroup ItemGroup { get; set; } = ItemGroup.Combat;
         public ItemType ItemType { get; set; }
         public int ItemCount { get; set; }
-        public Attribute Attribute { get; set; }
+        public List<ItemAttributes> Attribute { get; set; }
+
+        public Item(string name, ItemRarity rarity, bool isStackable, ItemGroup itemGroup, ItemType itemType, List<ItemAttributes> attributes, int itemCount = 1)
+        {
+            Name = name;
+            Rarity = rarity;
+            IsStackable = isStackable;
+            ItemGroup = itemGroup;
+            ItemType = itemType;
+            ItemCount = itemCount;
+            if (attributes != null && attributes.Count > 0)
+            {
+                Attribute = attributes;
+            }
+            else
+            {
+                Attribute = [];
+            }
+        }
 
         public override string ToString()
         {
@@ -19,22 +37,4 @@ namespace InventorySystem.Core
         }
 
     }
-
-    // Create a Default itemList for testing
-    public class ItemDatabase
-    {
-        public static List<Item> DefaultItems =
-        [
-            new() { Name = "Health Potion", Rarity = ItemRarity.Common, IsStackable = true, ItemGroup = ItemGroup.Combat, ItemType = ItemType.Potion },
-            new() { Name = "Mana Potion", Rarity = ItemRarity.Common, IsStackable = true, ItemGroup = ItemGroup.Combat, ItemType = ItemType.Potion },
-            new() { Name = "Iron Sword", Rarity = ItemRarity.Uncommon, IsStackable = false, ItemGroup = ItemGroup.Combat, ItemType = ItemType.Weapon },
-            new() { Name = "Steel Shield", Rarity = ItemRarity.Rare, IsStackable = false, ItemGroup = ItemGroup.Combat, ItemType = ItemType.Weapon },
-            new() { Name = "Golden Apple", Rarity = ItemRarity.Epic, IsStackable = true, ItemGroup = ItemGroup.Utility, ItemType = ItemType.Food }
-        ];
-    }
-
-
-
-
-
 }
