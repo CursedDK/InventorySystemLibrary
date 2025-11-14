@@ -3,17 +3,22 @@
     public class Inventory
     {
         public InventorySettings Settings { get; set; }
-        public List<InventorySlot> Slots { get; set; }
+        public List<InventorySlot> Slots { get; set; } = [];
 
+        public Inventory(InventorySettings settings) : this(InventoryStyle.Default, InventoryType.Default, 0, settings) { }
 
-        public Inventory(InventoryStyle inventoryStyle, InventoryType inventoryType, int slotCapacity = 0)
+        public Inventory(InventoryStyle inventoryStyle, InventoryType inventoryType, InventorySettings settings) : this(inventoryStyle, inventoryType, 0, settings) { }
+
+        public Inventory(InventoryStyle inventoryStyle, InventoryType inventoryType, int slotCapacity = 0, InventorySettings? settings = null)
         {
-            Settings = new InventorySettings(inventoryStyle, inventoryType);
+            if (settings != null)
+                Settings = settings;
+            else
+                Settings = new InventorySettings(inventoryStyle, inventoryType);
+
             if (slotCapacity > 0 && Settings.MaxCapacity != slotCapacity)
-            {
                 Settings.MaxCapacity = slotCapacity;
-            }
-            Slots = [];
+
             for (int i = 0; i < Settings.MaxCapacity; i++)
             {
                 Slots.Add(new InventorySlot(i));
