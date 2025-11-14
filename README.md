@@ -26,9 +26,8 @@ inventory.AddItem(potion);
 ```
 
 ## Project Structure
-- `Items/` — item definitions
-- `Inventory/` — core inventory logic
-- `Interfaces/` — abstractions for customization
+- `Core/` — Core inventory logic
+- `Helper/` — Helper classes
 
 ## Contributing
 Pull requests are welcome! For major changes, open an issue first to discuss your ideas.
